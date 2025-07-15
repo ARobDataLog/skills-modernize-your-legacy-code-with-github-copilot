@@ -1,0 +1,16 @@
+# Test Plan for COBOL Student Account Management System
+
+This test plan covers all business logic implemented in the legacy COBOL application for student account management. Use this plan to validate the system with business stakeholders and as a basis for future automated tests.
+
+| Test Case ID | Test Case Description                        | Pre-conditions                | Test Steps                                                                 | Expected Result                                                      | Actual Result | Status (Pass/Fail) | Comments |
+|--------------|----------------------------------------------|-------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------|---------------|--------------------|----------|
+| TC-01        | View current account balance                 | Application is running        | 1. Start app<br>2. Select 'View Balance' (option 1)                      | Current balance is displayed (default: 1000.00 if no prior changes)  |               |                    |          |
+| TC-02        | Credit account with valid amount             | Application is running        | 1. Start app<br>2. Select 'Credit Account' (option 2)<br>3. Enter 200    | Balance increases by 200; new balance displayed                       |               |                    |          |
+| TC-03        | Debit account with valid amount              | Application is running, balance >= debit amount | 1. Start app<br>2. Select 'Debit Account' (option 3)<br>3. Enter 100 | Balance decreases by 100; new balance displayed                        |               |                    |          |
+| TC-04        | Attempt to debit more than available balance | Application is running, balance < debit amount | 1. Start app<br>2. Select 'Debit Account' (option 3)<br>3. Enter 2000 | Error message: 'Insufficient funds for this debit.'; balance unchanged |               |                    |          |
+| TC-05        | Enter invalid menu option                    | Application is running        | 1. Start app<br>2. Enter 9 at menu prompt                               | Error message: 'Invalid choice, please select 1-4.'                   |               |                    |          |
+| TC-06        | Exit the application                        | Application is running        | 1. Start app<br>2. Select 'Exit' (option 4)                             | Application exits with goodbye message                                 |               |                    |          |
+| TC-07        | Data consistency after multiple operations   | Application is running        | 1. Credit 100<br>2. Debit 50<br>3. View Balance                         | Balance reflects all previous credits and debits correctly            |               |                    |          |
+| TC-08        | Prevent overdraft after multiple debits      | Application is running, balance low | 1. Debit until balance is 0<br>2. Attempt another debit             | Error message for insufficient funds; balance remains at 0            |               |                    |          |
+
+> **Note:** Fill in the 'Actual Result', 'Status', and 'Comments' columns during test execution.
